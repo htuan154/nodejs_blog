@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const app = express();
 const port = 3000;
 const exphbs = require('express-handlebars');
+// Static file
+app.use(express.static(path.join(__dirname,'public')));
 
 // HTTP Logger
 app.use(morgan('combined'));
