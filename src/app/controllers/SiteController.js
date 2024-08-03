@@ -1,8 +1,14 @@
+const Course = require('../modol/Course')
+
 class SiteController {
-    // [Get] / home
-    index(req, res) {
-        res.render('home');
-    }
+    async index(req, res) {
+        try {
+          const courses = await Course.find({});
+          res.json(courses);
+        } catch (error) {
+          res.status(400).json({ err: "ERROR!!!" });
+        }
+      }
     // [GET] / search
     search() {
         res.render('search');
