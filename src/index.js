@@ -7,16 +7,16 @@ const exphbs = require('express-handlebars');
 const route = require('./routes');
 
 // Middleware xử lý form data
-   app.use(express.urlencoded({ extended: true }));
-                  app.use(express.json({ limit: 10 }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: 10 }));
 // Static file
-  app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // HTTP Logger
 app.use(morgan('combined'));
 
 // Template engine
-              app.engine(
+app.engine(
     'hbs',
     exphbs.engine({
         //Rename
