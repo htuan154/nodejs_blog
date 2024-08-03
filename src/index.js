@@ -8,7 +8,7 @@ const route = require('./routes');
 const db = require('./config/db');
 
 // Connect to DB
-db.connect(); 
+db.connect();
 
 // Middleware xử lý form data
 app.use(express.urlencoded({ extended: true }));
@@ -29,7 +29,7 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources','views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Routes
 route(app);
