@@ -1,13 +1,12 @@
 class NewsController {
-
     // [Get] /news
-    index(req, res){
+    index(req, res) {
         res.render('news');
-    };
+    }
     // [GET] /news/slug biến động
-    show(){
+    show() {
         res.send('News Detail!');
-    };
+    }
 }
 
 module.exports = new NewsController();
