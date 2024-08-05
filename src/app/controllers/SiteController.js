@@ -1,4 +1,4 @@
-const Course = require('../modol/Course');
+const Course = require('../model/Course');
 // Cách cũ khi làm mới mongoose khởi tạo
 const { mutipleMongooseToObject } = require('../../util/mongoose.js');
 class SiteController {
@@ -14,7 +14,7 @@ class SiteController {
     }
 
     // [GET] / search
-    search() {
+    search(req, res) {
         res.render('search');
     }
 }

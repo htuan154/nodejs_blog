@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 const port = 3000;
+const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
 const route = require('./routes');
 const db = require('./config/db');
@@ -16,7 +17,14 @@ app.use(express.json({ limit: 10 }));
 
 // Static file
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
+app.use(express.json());
 
+app.use(methodOverride('_method'));
 // HTTP Logger
 app.use(morgan('combined'));
 
