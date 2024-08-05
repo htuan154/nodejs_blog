@@ -1,14 +1,18 @@
-const Course = require('../modol/Course')
-
+const Course = require('../modol/Course');
+// Cách cũ khi làm mới mongoose khởi tạo
+const { mutipleMongooseToObject } = require('../../util/mongoose.js');
 class SiteController {
-    async index(req, res) {
-        try {
-          const courses = await Course.find({});
-          res.json(courses);
-        } catch (error) {
-          res.status(400).json({ err: "ERROR!!!" });
-        }
-      }
+    index(req, res, next) {
+        Course.find({})
+            //Sử dụng lean() sau find() với Mongoose
+            //kích hoạt lean() này sẽ cho Mongoose bỏ qua việc khởi tạo
+            //toàn bộ tài liệu Mongoose và chỉ cung cấp cho bạn POJO.
+            //giúp truy vấn nhanh hơn rất nhiều khi sử dụng find().
+            .lean()
+            .then((courses) => res.render('home', { courses }))
+            .catch(next);
+    }
+
     // [GET] / search
     search() {
         res.render('search');
