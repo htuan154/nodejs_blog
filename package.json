@@ -6,7 +6,7 @@
     "prepare": "husky install",
     "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
-    "watch": "node-sass  -w src/resources/scss/ --output src/public/css/",
+    "watch": "sass --embed-source-map src/resources/scss/app.scss src/public/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -47,6 +47,7 @@
     "morgan": "^1.10.0",
     "node-sass": "^9.0.0",
     "nodemon": "^3.1.4",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "sass": "^1.77.8"
   }
 }

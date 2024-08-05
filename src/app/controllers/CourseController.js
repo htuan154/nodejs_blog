@@ -1,16 +1,19 @@
-const Course = require('../model/Course');
+const Course = require('../models/Course.js');
 // Cách cũ khi làm mới mongoose khởi tạo
-const { mutipleMongooseToObject } = require('../../util/mongoose.js');
+const { mongooseToObject } = require('../../util/mongoose.js');
+
 class CourseController {
     // [GET] / courses/ :slug
     show(req, res, next) {
         Course.findOne({ slug: req.params.slug })
-            .lean()
-            .then((course) => {
-                res.render('courses/show', { course });
-            })
+            .then((course) =>
+                res.render('courses/show', {
+                    course: mongooseToObject(course),
+                }),
+            )
             .catch(next);
     }
+
     // [GET] / courses/create
     create(req, res, next) {
         res.render('courses/create');

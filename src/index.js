@@ -1,22 +1,24 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
-const app = express();
-const port = 3000;
 const methodOverride = require('method-override');
 const exphbs = require('express-handlebars');
 const route = require('./routes');
 const db = require('./config/db');
+const handlebars = require('express-handlebars');
 
 // Connect to DB
 db.connect();
+const app = express();
+const port = 3000;
 
 // Middleware xử lý form data
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: 10 }));
+app.use(express.json());
 
 // Static file
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src/public')));
+
 app.use(
     express.urlencoded({
         extended: true,
